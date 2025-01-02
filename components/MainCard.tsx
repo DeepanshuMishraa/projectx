@@ -61,13 +61,13 @@ const ProjectGeneratorCard = () => {
   });
 
   const onSubmit = (data: FormValues) => {
-    setTimeout(()=>{
-        console.log(data);
-    },3000)
+    setTimeout(() => {
+      console.log(data);
+    }, 3000);
   };
 
   return (
-    <Card className="w-[500px] bg-white">
+    <Card className="w-[500px]">
       <CardHeader className="space-y-1.5 text-center">
         <CardTitle className="text-2xl font-semibold tracking-tight">
           Project Generator
@@ -221,7 +221,11 @@ const ProjectGeneratorCard = () => {
           </CardContent>
           <CardFooter>
             <Button type="submit" className="w-full">
-              {form.formState.isSubmitting ? <Loader2 /> : "Generate Project"}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                "Generate Project"
+              )}
             </Button>
           </CardFooter>
         </form>
