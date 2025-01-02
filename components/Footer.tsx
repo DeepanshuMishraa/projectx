@@ -6,10 +6,10 @@ const Footer = () => {
       <p className="text-md">
         Made with ❤️ by{" "}
         <a
-          href="http://x.com/DeepanshuMishraa"
+          href="http://linkedin.com/in/deepanshum"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline"
+          className="underline" 
         >
           Deepanshu
         </a>

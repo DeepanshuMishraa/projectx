@@ -63,9 +63,15 @@ const ProjectGeneratorCard = () => {
   });
   const router = useRouter();
 
-  const onSubmit = async(data: FormValues) => {
-    await generateProjectDetails(data);
-    router.push("/generated-projects");
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const projectDetails = await generateProjectDetails(data);
+      localStorage.setItem("generatedProject", JSON.stringify(projectDetails));
+      router.push("/generated-projects");
+    } catch (error) {
+      console.error("Failed to generate project:", error);
+      form.reset();
+    }
   };
 
   return (

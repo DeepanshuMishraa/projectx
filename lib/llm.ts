@@ -1,7 +1,10 @@
+
+
+import { GROQ_API_KEY } from "@/config";
 import Groq from "groq-sdk";
 import { z } from "zod";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const groq = new Groq({ apiKey: GROQ_API_KEY, dangerouslyAllowBrowser: true });
 
 export type ProjectInput = {
   projectName: string;
