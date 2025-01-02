@@ -30,6 +30,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
+import { generateProjectDetails } from "@/lib/llm";
+import { useRouter } from "next/navigation";
 
 const frameworks = [
   { value: "react", label: "React" },
@@ -59,11 +61,11 @@ const ProjectGeneratorCard = () => {
       complexity: 10,
     },
   });
+  const router = useRouter();
 
-  const onSubmit = (data: FormValues) => {
-    setTimeout(() => {
-      console.log(data);
-    }, 3000);
+  const onSubmit = async(data: FormValues) => {
+    await generateProjectDetails(data);
+    router.push("/generated-projects");
   };
 
   return (
