@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {  Montserrat, Poppins } from "next/font/google";
+import {   Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "./theme-provider";
@@ -10,10 +10,7 @@ const pop = Poppins({
   weight: ["200", "400", "600", "800"],
 });
 
-const mons = Montserrat({
-  subsets: ["latin"],
-  weight: ["200", "400", "600", "800"],
-});
+
 
 export const metadata: Metadata = {
   title: "ProjectX",
