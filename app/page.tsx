@@ -1,5 +1,9 @@
-import Image from "next/image";
+import MainCard from "@/components/MainCard";
 
 export default function Home() {
-  return <div>hello world</div>;
+  return (
+    <main className="flex items-center justify-center h-screen">
+      <MainCard />
+    </main>
+  );
 }
