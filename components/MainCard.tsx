@@ -77,10 +77,10 @@ const ProjectGeneratorCard = () => {
     <Card className="w-[500px]">
       <CardHeader className="space-y-1.5 text-center">
         <CardTitle className="text-2xl font-semibold tracking-tight">
-          Project Generator
+          Generate Project
         </CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          Create your next programming project
+          Get idea for your  next programming project
         </CardDescription>
       </CardHeader>
       <Form {...form}>
