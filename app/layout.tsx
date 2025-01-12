@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import {   Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "./theme-provider";
+import { Analytics } from "@vercel/analytics/react"
 
 
 const pop = Poppins({
@@ -15,17 +16,17 @@ const pop = Poppins({
 export const metadata: Metadata = {
   title: "ProjectX",
   description: "Get ideas for your next programming project",
-  openGraph:{
-    title:"ProjectX",
-    description:"Get ideas for your next programming project",
-    url:"https://projectx.deepanshumishra.me/",
-    siteName:"ProjectX",
-    images:[
+  openGraph: {
+    title: "ProjectX",
+    description: "Get ideas for your next programming project",
+    url: "https://projectx.deepanshumishra.me/",
+    siteName: "ProjectX",
+    images: [
       {
-        url:"https://phh5ur14gr.ufs.sh/f/a1wYTWuoYzdPdo2hLfbDpNhUzQ65Fwl2XgETcm0G4JHvi3eM",
-        width:1230,
-        height:630,
-        alt:"ProjectX"
+        url: "https://phh5ur14gr.ufs.sh/f/a1wYTWuoYzdPdo2hLfbDpNhUzQ65Fwl2XgETcm0G4JHvi3eM",
+        width: 1230,
+        height: 630,
+        alt: "ProjectX"
       }
     ]
   }
@@ -48,6 +49,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
