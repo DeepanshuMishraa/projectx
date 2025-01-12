@@ -15,6 +15,20 @@ const pop = Poppins({
 export const metadata: Metadata = {
   title: "ProjectX",
   description: "Get ideas for your next programming project",
+  openGraph:{
+    title:"ProjectX",
+    description:"Get ideas for your next programming project",
+    url:"https://projectx.deepanshumishra.me/",
+    siteName:"ProjectX",
+    images:[
+      {
+        url:"https://phh5ur14gr.ufs.sh/f/a1wYTWuoYzdPdo2hLfbDpNhUzQ65Fwl2XgETcm0G4JHvi3eM",
+        width:1230,
+        height:630,
+        alt:"ProjectX"
+      }
+    ]
+  }
 };
 
 export default function RootLayout({
