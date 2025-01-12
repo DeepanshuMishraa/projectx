@@ -40,7 +40,6 @@ const frameworks = [
   { value: "reactnative", label: "React Native" },
 ];
 
-
 type FormValues = {
   techStack: string;
   framework: string;
@@ -90,193 +89,188 @@ const ProjectGeneratorCard = () => {
   };
 
   return (
-    <div className="flex gap-4">
-      <Card className="w-[400px]">
-        <CardHeader className="space-y-1.5">
-          <CardTitle className="text-2xl font-semibold tracking-tight">
-            Project Ideas Generator
-          </CardTitle>
-          <CardDescription className="text-sm text-muted-foreground">
-            Generate project ideas based on your preferences
-          </CardDescription>
-        </CardHeader>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <CardContent className="p-4">
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Generator Form Card */}
+        <Card className="w-full">
+          <CardHeader className="space-y-1.5">
+            <CardTitle className="text-xl md:text-2xl font-semibold tracking-tight">
+              Project Ideas Generator
+            </CardTitle>
+            <CardDescription className="text-sm text-muted-foreground">
+              Generate project ideas based on your preferences
+            </CardDescription>
+          </CardHeader>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <CardContent className="p-4">
+                <div className="space-y-4">
+                  {/* Tech Stack */}
+                  <FormField
+                    control={form.control}
+                    name="techStack"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Tech Stack</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select language" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectItem value="typescript">TypeScript</SelectItem>
+                              <SelectItem value="javascript">JavaScript</SelectItem>
+                              <SelectItem value="python">Python</SelectItem>
+                              <SelectItem value="go">Go</SelectItem>
+                              <SelectItem value="rust">Rust</SelectItem>
+                              <SelectItem value="java">Java</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="framework"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Framework</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select framework" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectGroup>
+                              {frameworks.map((framework) => (
+                                <SelectItem
+                                  key={framework.value}
+                                  value={framework.value}
+                                >
+                                  {framework.label}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="domain"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Domain</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select domain" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectItem value="frontend">Frontend</SelectItem>
+                              <SelectItem value="backend">Backend</SelectItem>
+                              <SelectItem value="fullstack">Fullstack</SelectItem>
+                              <SelectItem value="mobile">Mobile</SelectItem>
+                              <SelectItem value="ml">Machine Learning</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="difficulty"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Difficulty Level</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select difficulty" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectItem value="beginner">Beginner</SelectItem>
+                              <SelectItem value="intermediate">Intermediate</SelectItem>
+                              <SelectItem value="advanced">Advanced</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button type="submit" className="w-full">
+                  {isLoading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    "Generate Ideas"
+                  )}
+                </Button>
+              </CardFooter>
+            </form>
+          </Form>
+        </Card>
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle className="text-xl md:text-2xl">Generated Project Ideas</CardTitle>
+            <CardDescription>
+              Select a project to see more details
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ScrollArea className="h-[300px] md:h-[500px] pr-4">
               <div className="space-y-4">
-                {/* Tech Stack */}
-                <FormField
-                  control={form.control}
-                  name="techStack"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tech Stack</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select language" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectItem value="typescript">TypeScript</SelectItem>
-                            <SelectItem value="javascript">JavaScript</SelectItem>
-                            <SelectItem value="python">Python</SelectItem>
-                            <SelectItem value="go">Go</SelectItem>
-                            <SelectItem value="rust">Rust</SelectItem>
-                            <SelectItem value="java">Java</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Framework */}
-                <FormField
-                  control={form.control}
-                  name="framework"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Framework</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select framework" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectGroup>
-                            {frameworks.map((framework) => (
-                              <SelectItem
-                                key={framework.value}
-                                value={framework.value}
-                              >
-                                {framework.label}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Domain */}
-                <FormField
-                  control={form.control}
-                  name="domain"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Domain</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select domain" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectItem value="frontend">Frontend</SelectItem>
-                            <SelectItem value="backend">Backend</SelectItem>
-                            <SelectItem value="fullstack">Fullstack</SelectItem>
-                            <SelectItem value="mobile">Mobile</SelectItem>
-                            <SelectItem value="ml">Machine Learning</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Difficulty */}
-                <FormField
-                  control={form.control}
-                  name="difficulty"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Difficulty Level</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select difficulty" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectItem value="beginner">Beginner</SelectItem>
-                            <SelectItem value="intermediate">Intermediate</SelectItem>
-                            <SelectItem value="advanced">Advanced</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button type="submit" className="w-full">
-                {isLoading ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  "Generate Ideas"
-                )}
-              </Button>
-            </CardFooter>
-          </form>
-        </Form>
-      </Card>
-
-      {/* Results Card */}
-      <Card className="w-[500px]">
-        <CardHeader>
-          <CardTitle>Generated Project Ideas</CardTitle>
-          <CardDescription>
-            Select a project to see more details
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ScrollArea className="h-[500px] pr-4">
-            <div className="space-y-4">
-              {projectIdeas.map((idea, index) => (
-                <Card key={index} className="p-4">
-                  <h3 className="font-semibold text-lg">{idea.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {idea.description}
+                {projectIdeas.map((idea, index) => (
+                  <Card key={index} className="p-4">
+                    <h3 className="font-semibold text-lg">{idea.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {idea.description}
+                    </p>
+                    <div className="mt-2">
+                      <span className="text-xs bg-secondary px-2 py-1 rounded-full">
+                        {idea.difficulty}
+                      </span>
+                    </div>
+                  </Card>
+                ))}
+                {projectIdeas.length === 0 && !isLoading && (
+                  <p className="text-center text-muted-foreground">
+                    No project ideas generated yet. Fill out the form and click generate!
                   </p>
-                  <div className="mt-2">
-                    <span className="text-xs bg-secondary px-2 py-1 rounded-full">
-                      {idea.difficulty}
-                    </span>
-                  </div>
-                </Card>
-              ))}
-              {projectIdeas.length === 0 && !isLoading && (
-                <p className="text-center text-muted-foreground">
-                  No project ideas generated yet. Fill out the form and click generate!
-                </p>
-              )}
-            </div>
-          </ScrollArea>
-        </CardContent>
-      </Card>
+                )}
+              </div>
+            </ScrollArea>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
