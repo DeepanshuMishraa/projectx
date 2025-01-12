@@ -38,6 +38,9 @@ const frameworks = [
   { value: "next", label: "Next.js" },
   { value: "flutter", label: "Flutter" },
   { value: "reactnative", label: "React Native" },
+  { value: "unity", label: "Unity" },
+  { value: "unreal", label: "Unreal Engine" },
+
 ];
 
 type FormValues = {
@@ -129,6 +132,9 @@ const ProjectGeneratorCard = () => {
                               <SelectItem value="go">Go</SelectItem>
                               <SelectItem value="rust">Rust</SelectItem>
                               <SelectItem value="java">Java</SelectItem>
+                              <SelectItem value="csharp">C#</SelectItem>
+                              <SelectItem value="cpp">C++</SelectItem>
+
                             </SelectGroup>
                           </SelectContent>
                         </Select>
@@ -190,6 +196,8 @@ const ProjectGeneratorCard = () => {
                               <SelectItem value="fullstack">Fullstack</SelectItem>
                               <SelectItem value="mobile">Mobile</SelectItem>
                               <SelectItem value="ml">Machine Learning</SelectItem>
+                              <SelectItem value="gamedev">Game Development</SelectItem>
+
                             </SelectGroup>
                           </SelectContent>
                         </Select>
